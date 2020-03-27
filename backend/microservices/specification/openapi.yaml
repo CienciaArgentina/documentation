@@ -3,238 +3,21 @@ info:
   title: Ciencia Argentina Microservices
   version: v1
 paths:
-  /api/Accounts:
-    get:
-      tags:
-        - Accounts
-      parameters:
-        - name: Page
-          in: query
-          schema:
-            type: integer
-            format: int32
-        - name: PageCount
-          in: query
-          schema:
-            type: integer
-            format: int32
-        - name: HasQuery
-          in: query
-          schema:
-            type: boolean
-        - name: Query
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: OrderBy
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: Descending
-          in: query
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: Success
-    post:
-      tags:
-        - Accounts
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/UserCreateDto'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserCreateDto'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/UserCreateDto'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UserCreateDto'
-      responses:
-        '200':
-          description: Success
-  '/api/Accounts/{userName}':
-    get:
-      tags:
-        - Accounts
-      parameters:
-        - name: userName
-          in: path
-          required: true
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: Success
-          content:
-            text/plain:
-              schema:
-                type: integer
-                format: int32
-            application/json:
-              schema:
-                type: integer
-                format: int32
-            text/json:
-              schema:
-                type: integer
-                format: int32
-        '404':
-          description: Not Found
-          content:
-            text/plain:
-              schema:
-                type: integer
-                format: int32
-            application/json:
-              schema:
-                type: integer
-                format: int32
-            text/json:
-              schema:
-                type: integer
-                format: int32
-    delete:
-      tags:
-        - Accounts
-      parameters:
-        - name: userName
-          in: path
-          required: true
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: Success
-  /api/Accounts/Login:
-    post:
-      tags:
-        - Accounts
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/UserLoginDto'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserLoginDto'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/UserLoginDto'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UserLoginDto'
-      responses:
-        '200':
-          description: Success
-  /api/Accounts/ConfirmationRegisterMail:
-    get:
-      tags:
-        - Accounts
-      parameters:
-        - name: email
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: token
-          in: query
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: Success
-  /api/Accounts/SendConfirmationRegisterMail:
-    get:
-      tags:
-        - Accounts
-      parameters:
-        - name: email
-          in: query
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: Success
-  /api/Accounts/SendPasswordReset:
-    get:
-      tags:
-        - Accounts
-      parameters:
-        - name: email
-          in: query
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: Success
-  /api/Accounts/ResetPassword:
-    post:
-      tags:
-        - Accounts
-      parameters:
-        - name: email
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: password
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: confirmPassword
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: token
-          in: query
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: Success
-  /api/Accounts/SendForgotUsername:
-    get:
-      tags:
-        - Accounts
-      parameters:
-        - name: email
-          in: query
-          schema:
-            type: string
-            nullable: true
-      responses:
-        '200':
-          description: Success
-  /api/Geo/getCountries:
+  /api/geo/countries:
     get:
       tags:
         - Geo
       responses:
         '200':
           description: Success
-  /api/Geo/getArgentinianStates:
+  /api/geo/states:
     get:
       tags:
         - Geo
       responses:
         '200':
           description: Success
-  '/api/Geo/getCitiesByStateId/{stateId}':
+  /api/geo/states/{stateId}/cities:
     get:
       tags:
         - Geo
@@ -249,7 +32,7 @@ paths:
       responses:
         '200':
           description: Success
-  '/api/Geo/getLocalitiesByCityId/{cityId}':
+  /api/geo/cities/{cityId}/localities:
     get:
       tags:
         - Geo
@@ -264,7 +47,7 @@ paths:
       responses:
         '200':
           description: Success
-  /api/JobOffers:
+  /api/joboffers:
     get:
       tags:
         - JobOffers
@@ -278,20 +61,20 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
           application/json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
           text/json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
       responses:
         '200':
           description: Success
-  '/api/JobOffers/{id}':
+  '/api/joboffers/{id}':
     get:
       tags:
         - JobOffers
@@ -319,16 +102,16 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
           application/json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
           text/json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/JobOfferDto'
+              $ref: '#/components/schemas/JobOffer'
       responses:
         '200':
           description: Success
@@ -345,7 +128,7 @@ paths:
       responses:
         '200':
           description: Success
-  /api/Organizations:
+  /api/organizations:
     get:
       tags:
         - Organizations
@@ -359,20 +142,20 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
           application/json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
           text/json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
       responses:
         '200':
           description: Success
-  '/api/Organizations/{organizationId}':
+  '/api/organizations/{organizationId}':
     get:
       tags:
         - Organizations
@@ -400,16 +183,16 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
           application/json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
           text/json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/OrganizationDto'
+              $ref: '#/components/schemas/Organization'
       responses:
         '200':
           description: Success
@@ -426,7 +209,7 @@ paths:
       responses:
         '200':
           description: Success
-  '/api/Organizations/laboratory/{labId}':
+  '/api/organizations/{labId}':
     get:
       tags:
         - Organizations
@@ -440,72 +223,12 @@ paths:
       responses:
         '200':
           description: Success
-  /api/Roles:
+  /api/userProfiles/{userProfileId}:
     get:
       tags:
-        - Roles
+        - UserProfiles
       parameters:
-        - name: Page
-          in: query
-          schema:
-            type: integer
-            format: int32
-        - name: PageCount
-          in: query
-          schema:
-            type: integer
-            format: int32
-        - name: HasQuery
-          in: query
-          schema:
-            type: boolean
-        - name: Query
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: OrderBy
-          in: query
-          schema:
-            type: string
-            nullable: true
-        - name: Descending
-          in: query
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: Success
-    post:
-      tags:
-        - Roles
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              type: string
-              nullable: true
-          application/json:
-            schema:
-              type: string
-              nullable: true
-          text/json:
-            schema:
-              type: string
-              nullable: true
-          application/*+json:
-            schema:
-              type: string
-              nullable: true
-      responses:
-        '200':
-          description: Success
-  '/api/Roles/{roleName}':
-    get:
-      tags:
-        - Roles
-      parameters:
-        - name: roleName
+        - name: userProfileId
           in: path
           required: true
           schema:
@@ -517,194 +240,65 @@ paths:
           content:
             text/plain:
               schema:
-                type: integer
-                format: int32
+                $ref: '#/components/schemas/UserProfile'
             application/json:
               schema:
-                type: integer
-                format: int32
+                $ref: '#/components/schemas/UserProfile'
             text/json:
               schema:
-                type: integer
-                format: int32
+                $ref: '#/components/schemas/UserProfile'
         '404':
           description: Not Found
-          content:
-            text/plain:
-              schema:
-                type: integer
-                format: int32
-            application/json:
-              schema:
-                type: integer
-                format: int32
-            text/json:
-              schema:
-                type: integer
-                format: int32
-  '/api/Roles/{roleClaim}':
-    post:
-      tags:
-        - Roles
-      parameters:
-        - name: roleClaim
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/CreateClaimDto'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateClaimDto'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/CreateClaimDto'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/CreateClaimDto'
-      responses:
-        '200':
-          description: Success
-  '/api/Users/{userProfileId}':
-    get:
-      tags:
-        - Users
-      parameters:
-        - name: userProfileId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: Success
     put:
       tags:
-        - Users
+        - UserProfiles
       parameters:
-        - name: userId
-          in: query
-          schema:
-            type: integer
-            format: int32
         - name: userProfileId
           in: path
           required: true
           schema:
             type: string
+            nullable: true
       requestBody:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/UserProfileDto'
+              $ref: '#/components/schemas/UserProfile'
           application/json:
             schema:
-              $ref: '#/components/schemas/UserProfileDto'
+              $ref: '#/components/schemas/UserProfile'
           text/json:
             schema:
-              $ref: '#/components/schemas/UserProfileDto'
+              $ref: '#/components/schemas/UserProfile'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UserProfileDto'
+              $ref: '#/components/schemas/UserProfile'
       responses:
         '200':
           description: Success
-  /api/Users:
-    post:
-      tags:
-        - Users
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/UserProfileDto'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserProfileDto'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/UserProfileDto'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UserProfileDto'
-      responses:
-        '200':
-          description: Success
-  '/api/Users/{id}':
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
     delete:
       tags:
-        - Users
+        - UserProfiles
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: Success
-  '/api/Users/GetArticleByPMID/{pmid}':
-    get:
-      tags:
-        - Users
-      parameters:
-        - name: pmid
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-            nullable: true
-      responses:
-        '200':
-          description: Success
-  '/api/Users/GetArticlesByAlias/{alias}':
-    get:
-      tags:
-        - Users
-      parameters:
-        - name: alias
+        - name: userProfileId
           in: path
           required: true
           schema:
             type: string
             nullable: true
       responses:
-        '200':
+        '204':
           description: Success
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
 components:
   schemas:
-    UserCreateDto:
-      required:
-        - email
-        - password
-        - userName
-      type: object
-      properties:
-        userName:
-          type: string
-        password:
-          type: string
-        email:
-          type: string
-      nullable: true
-    UserLoginDto:
-      required:
-        - password
-        - userName
-      type: object
-      properties:
-        userName:
-          type: string
-        password:
-          type: string
-      nullable: true
     JobType:
       type: object
       properties:
@@ -758,7 +352,7 @@ components:
         - 5
       type: integer
       format: int32
-    OrganizationTypeDto:
+    OrganizationType:
       type: object
       properties:
         description:
@@ -768,7 +362,68 @@ components:
           type: number
           format: double
       nullable: true
-    OrganizationDto:
+    Locality:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        description:
+          type: string
+          nullable: true
+      nullable: true
+    Points:
+      type: object
+      properties:
+        latitud:
+          type: string
+          nullable: true
+        longitud:
+          type: string
+          nullable: true
+      nullable: true
+    Geo:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        coordinates:
+          $ref: '#/components/schemas/Points'
+      nullable: true
+    Address:
+      type: object
+      properties:
+        streetName:
+          type: string
+          nullable: true
+        streetNumber:
+          type: string
+          nullable: true
+        zipCode:
+          type: string
+          nullable: true
+        department:
+          type: string
+          nullable: true
+        additionals:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        stateOrProvince:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        locality:
+          $ref: '#/components/schemas/Locality'
+        geo:
+          $ref: '#/components/schemas/Geo'
+      nullable: true
+    Organization:
       type: object
       properties:
         name:
@@ -778,7 +433,7 @@ components:
           type: string
           nullable: true
         organizationType:
-          $ref: '#/components/schemas/OrganizationTypeDto'
+          $ref: '#/components/schemas/OrganizationType'
         logo:
           type: string
           nullable: true
@@ -791,26 +446,10 @@ components:
         link:
           type: string
           nullable: true
-        country:
-          type: string
-          nullable: true
-        locality:
-          type: string
-          nullable: true
-        city:
-          type: string
-          nullable: true
-        state:
-          type: string
-          nullable: true
         address:
-          type: string
-          nullable: true
-        zipCode:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/Address'
       nullable: true
-    DepartmentDto:
+    Department:
       type: object
       properties:
         id:
@@ -826,7 +465,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    OrganizationProjectDto:
+    OrganizationProject:
       type: object
       properties:
         id:
@@ -845,7 +484,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    JobOfferDto:
+    JobOffer:
       type: object
       properties:
         id:
@@ -905,26 +544,23 @@ components:
           type: string
           nullable: true
         organization:
-          $ref: '#/components/schemas/OrganizationDto'
+          $ref: '#/components/schemas/Organization'
         department:
-          $ref: '#/components/schemas/DepartmentDto'
+          $ref: '#/components/schemas/Department'
         project:
-          $ref: '#/components/schemas/OrganizationProjectDto'
+          $ref: '#/components/schemas/OrganizationProject'
       nullable: true
-    CreateClaimDto:
+    Identification:
       type: object
       properties:
-        typeName:
+        identificationType:
           type: string
           nullable: true
-        claimType:
-          type: string
-          nullable: true
-        claimValue:
+        identificationId:
           type: string
           nullable: true
       nullable: true
-    SocialNetworkDto:
+    SocialNetwork:
       type: object
       properties:
         socialNetworkName:
@@ -937,106 +573,174 @@ components:
           type: string
           nullable: true
       nullable: true
-    PositionDto:
-      type: object
-      properties:
-        positionName:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-      nullable: true
-    UserOrganizationDto:
+    Gender:
       type: object
       properties:
         id:
           type: integer
           format: int32
-        organization:
-          $ref: '#/components/schemas/OrganizationDto'
-        position:
-          $ref: '#/components/schemas/PositionDto'
-        userId:
+        description:
           type: string
           nullable: true
       nullable: true
-    AddressDto:
+    Nationality:
       type: object
       properties:
-        streetName:
-          type: string
-          nullable: true
-        streetNumber:
-          type: string
-          nullable: true
-        zipCode:
-          type: string
-          nullable: true
-        department:
-          type: string
-          nullable: true
-        additionals:
-          type: string
-          nullable: true
-        localityId:
-          type: integer
-          format: int32
-      nullable: true
-    AccountDto:
-      type: object
-      properties:
-        userName:
-          type: string
-          nullable: true
-        phoneNumber:
-          type: string
-          nullable: true
-        email:
-          type: string
-          nullable: true
-        normalizedEmail:
-          type: string
-          nullable: true
-        emailConfirmed:
-          type: string
-          nullable: true
-        normalizedUserName:
-          type: string
-          nullable: true
-        twoFactorEnabled:
-          type: boolean
-      nullable: true
-    UserProfileDto:
-      type: object
-      properties:
-        userId:
+        id:
           type: integer
           format: int32
         name:
           type: string
           nullable: true
-        middleName:
+      nullable: true
+    WorkExperience:
+      type: object
+      properties:
+        company:
           type: string
           nullable: true
-        lastName:
+        position:
           type: string
           nullable: true
-        identifier:
+        description:
           type: string
           nullable: true
-        socialNetwork:
-          $ref: '#/components/schemas/SocialNetworkDto'
-        userOrganization:
-          $ref: '#/components/schemas/UserOrganizationDto'
-        sex:
-          type: integer
-          format: int32
-        address:
-          $ref: '#/components/schemas/AddressDto'
-        birthday:
+        addittions:
+          type: string
+          nullable: true
+        dateStart:
           type: string
           format: date-time
-        accountDto:
-          $ref: '#/components/schemas/AccountDto'
+        dateEnd:
+          type: string
+          format: date-time
+          nullable: true
+        address:
+          $ref: '#/components/schemas/Address'
+      nullable: true
+    UserStudyType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        description:
+          type: string
+          nullable: true
+      nullable: true
+    University:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+      nullable: true
+    UserStudyStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        description:
+          type: string
+          nullable: true
+      nullable: true
+    UserStudy:
+      type: object
+      properties:
+        userStudyType:
+          $ref: '#/components/schemas/UserStudyType'
+        carrer:
+          type: string
+          nullable: true
+        institution:
+          type: string
+          nullable: true
+        additional:
+          type: string
+          nullable: true
+        university:
+          $ref: '#/components/schemas/University'
+        userStudyStatus:
+          $ref: '#/components/schemas/UserStudyStatus'
+        dateStart:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+          nullable: true
+      nullable: true
+    Telephone:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        countryCode:
+          type: integer
+          format: int32
+        areaCode:
+          type: integer
+          format: int32
+        phoneNumber:
+          type: integer
+          format: int32
+      nullable: true
+    UserProfile:
+      required:
+        - birthday
+        - gender
+        - lastName
+        - name
+        - nationality
+      type: object
+      properties:
+        userName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        name:
+          type: string
+        lastName:
+          type: string
+        identification:
+          $ref: '#/components/schemas/Identification'
+        socialNetwork:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialNetwork'
+          nullable: true
+        gender:
+          $ref: '#/components/schemas/Gender'
+        address:
+          $ref: '#/components/schemas/Address'
+        birthday:
+          type: string
+          format: date
+        nationality:
+          $ref: '#/components/schemas/Nationality'
+        workExperience:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkExperience'
+          nullable: true
+        userStudy:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserStudy'
+          nullable: true
+        telephone:
+          type: array
+          items:
+            $ref: '#/components/schemas/Telephone'
+          nullable: true
       nullable: true
