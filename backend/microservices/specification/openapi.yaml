@@ -2,6 +2,7 @@ openapi: 3.0.1
 info:
   title: Ciencia Argentina Microservices
   version: v1
+basePath: https://api.cienciaargentina.dev
 paths:
   /api/geo/countries:
     get:
@@ -249,6 +250,30 @@ paths:
                 $ref: '#/components/schemas/UserProfile'
         '404':
           description: Not Found
+    post:
+      tags:
+        - UserProfiles
+      parameters:
+        - name: userProfileId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
     put:
       tags:
         - UserProfiles
@@ -702,12 +727,8 @@ components:
         - nationality
       type: object
       properties:
-        userName:
-          type: string
-          nullable: true
-        email:
-          type: string
-          nullable: true
+        id:
+          type: number
         name:
           type: string
         lastName:
