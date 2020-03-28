@@ -6,7 +6,8 @@ basePath: https://api.cienciaargentina.dev
 paths:
   /users:
     post:
-      summary: "Registro de usuarios (sign-up)"
+      summary: "Sign up"
+      description: "Registro de usuarios (sign-up)"
       tags:
         - Users
       requestBody:
@@ -31,7 +32,8 @@ paths:
           description: Success
   /users/{userId}:
     get:
-      summary: "Obtiene un usuario por ID"
+      summary: "Get user by Id"
+      description: "Obtiene un usuario por ID"
       tags:
         - Users
       parameters:
@@ -67,7 +69,8 @@ paths:
           description: Success
   /users/sendconfirmationemail/{userId}:
     get:
-      summary: "Envío de email para la confirmación de un usuario"
+      summary: "Send confirmation email"
+      description: "Envío de email para la confirmación de un usuario"
       tags:
         - Users
       parameters:
@@ -82,7 +85,8 @@ paths:
           description: Success
   /users/resendconfirmationemail:
     get:
-      summary: "Reenvío de email para confirmación"
+      summary: "Resend confirmation email"
+      descript: "Reenvío de email para confirmación"
       tags:
         - Users
       parameters:
@@ -97,7 +101,8 @@ paths:
           description: Success
   /users/confirmemail:
     get:
-      summary: "Confirmación de email con token"
+      summary: "Confirm email"
+      description: "Confirmación de email con token"
       tags:
         - Users
       parameters:
@@ -118,7 +123,8 @@ paths:
           description: Success
   /users/sendpasswordreset:
     get:
-      summary: "Envío de mail para confirmar un cambio de password"
+      summary: "Send password reset"
+      description: "Envío de mail para confirmar un cambio de password"
       tags:
         - Users
       parameters:
@@ -133,7 +139,8 @@ paths:
           description: Success
   /users/confirmpasswordreset:
     post:
-      summary: "Confirmación del cambio de contraseña"
+      summary: "Confirm password reset"
+      description: "Confirmación del cambio de contraseña"
       tags:
         - Users
       requestBody:
@@ -161,7 +168,8 @@ paths:
           description: Success
   /users/forgotusername:
     get:
-      summary: "Envía al email, previamente confirmado, el nombre de usuario"
+      summary: "Forgot username"
+      description: "Envía al email, previamente confirmado, el nombre de usuario"
       tags:
         - Users
       parameters:
