@@ -2,15 +2,6 @@ openapi: 3.0.1
 info:
   title: Ciencia Argentina Microservices
   version: v1
-basePath: https://api.cienciaargentina.dev
-securityDefinitions:
-  apiciencia_auth:
-    type: "ouath2"
-    authorizationUrl: "http://localhost.swagger.io/oauth/dialog"
-    flow: "implicit"
-    scopes:
-      write:apiciencia: "modify apiciencia"
-      read:apiciencia: "read apiciencia"
 paths:
   /users:
     post:
@@ -91,14 +82,9 @@ paths:
       responses:
         '200':
           description: Success
-      security:
-        - apiciencia_auth:
-          - "write:apiciencia"
-          - "read:apiciencia"
   /users/resendconfirmationemail:
     get:
       summary: "Resend confirmation email"
-      descript: "Reenvío de email para confirmación"
       tags:
         - Users
       parameters:
@@ -464,6 +450,21 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UserProfile'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '404':
+          description: Not Found
     put:
       tags:
         - UserProfiles
