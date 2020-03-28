@@ -4,6 +4,176 @@ info:
   version: v1
 basePath: https://api.cienciaargentina.dev
 paths:
+  /users:
+    post:
+      summary: "Registro de usuarios (sign-up)"
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - email
+                - password
+      responses:
+        '200':
+          description: Success
+  /users/{userId}:
+    get:
+      summary: "Obtiene un usuario por ID"
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+  /users/login:
+    post:
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Success
+  /users/sendconfirmationemail/{userId}:
+    get:
+      summary: "Envío de email para la confirmación de un usuario"
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+  /users/resendconfirmationemail:
+    get:
+      summary: "Reenvío de email para confirmación"
+      tags:
+        - Users
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Success
+  /users/confirmemail:
+    get:
+      summary: "Confirmación de email con token"
+      tags:
+        - Users
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Success
+  /users/sendpasswordreset:
+    get:
+      summary: "Envío de mail para confirmar un cambio de password"
+      tags:
+        - Users
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Success
+  /users/confirmpasswordreset:
+    post:
+      summary: "Confirmación del cambio de contraseña"
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                confirm_password:
+                  type: string
+                token:
+                  type: string
+              required:
+                - email
+                - password
+                - confirm_password
+                - token
+      responses:
+        '200':
+          description: Success
+  /users/forgotusername:
+    get:
+      summary: "Envía al email, previamente confirmado, el nombre de usuario"
+      tags:
+        - Users
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Success
   /api/geo/countries:
     get:
       tags:
