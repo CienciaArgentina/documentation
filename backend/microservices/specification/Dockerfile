@@ -1,4 +1,9 @@
-﻿FROM swaggerapi/swagger-ui:latest
-EXPOSE 8080
-COPY openapi.yaml /docs/openapi.yaml
-ENV SWAGGER_JSON "/docs/openapi.yaml"
+﻿FROM nginx
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+RUN rm /etc/nginx/conf.d/examplessl.conf
+
+COPY openapi.yaml /usr/share/nginx/html
+
+COPY conf /etc/nginx

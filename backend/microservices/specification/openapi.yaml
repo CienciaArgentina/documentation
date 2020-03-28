@@ -3,6 +3,14 @@ info:
   title: Ciencia Argentina Microservices
   version: v1
 basePath: https://api.cienciaargentina.dev
+securityDefinitions:
+  apiciencia_auth:
+    type: "ouath2"
+    authorizationUrl: "http://localhost.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:apiciencia: "modify apiciencia"
+      read:apiciencia: "read apiciencia"
 paths:
   /users:
     post:
@@ -83,6 +91,10 @@ paths:
       responses:
         '200':
           description: Success
+      security:
+        - apiciencia_auth:
+          - "write:apiciencia"
+          - "read:apiciencia"
   /users/resendconfirmationemail:
     get:
       summary: "Resend confirmation email"
