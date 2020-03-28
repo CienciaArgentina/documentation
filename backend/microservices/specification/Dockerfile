@@ -1,4 +1,3 @@
-﻿FROM swaggerapi/swagger-ui:latest
+﻿FROM nginx:alpine
 EXPOSE 8080
-COPY openapi.yaml /docs/openapi.yaml
-ENV SWAGGER_JSON "/docs/openapi.yaml"
+COPY openapi.yaml /usr/share/nginx/html/openapi.yaml

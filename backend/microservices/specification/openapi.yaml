@@ -2,7 +2,6 @@ openapi: 3.0.1
 info:
   title: Ciencia Argentina Microservices
   version: v1
-basePath: https://api.cienciaargentina.dev
 paths:
   /users:
     post:
@@ -86,7 +85,6 @@ paths:
   /users/resendconfirmationemail:
     get:
       summary: "Resend confirmation email"
-      descript: "Reenvío de email para confirmación"
       tags:
         - Users
       parameters:
@@ -452,6 +450,21 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UserProfile'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '404':
+          description: Not Found
     put:
       tags:
         - UserProfiles
