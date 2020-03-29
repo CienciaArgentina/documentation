@@ -1,4 +1,4 @@
 ﻿FROM nginx:alpine
 EXPOSE 8080
 COPY openapi.yaml /usr/share/nginx/html/openapi.yaml
-COPY nginx.conf /etc/nginx/nginx.conf
+RUN mv /usr/share/nginx/html/nginx.conf /etc/nginx/conf.d/default.conf
