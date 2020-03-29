@@ -920,6 +920,8 @@ components:
       properties:
         id:
           type: number
+        userId:
+          type: number
         name:
           type: string
         lastName:
