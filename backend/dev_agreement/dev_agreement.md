@@ -1,10 +1,10 @@
 # Table of content
 
-- (Bases de datos)[#bases-de-datos]
-	- (Nomenclatura de los nombres de las bases de datos)[#nomenclatura-de-los-nombres-de-las-bases-de-datos]
-	- (Naming conventions para las bases de datos de Ciencia Argentina)[#naming-conventions-para-las-bases-de-datos-de-ciencia-argentina]
-- (JSON)[#json]
-	- (Formato)[#formato]
+- [Bases de datos](#bases-de-datos)
+	- [Nomenclatura de los nombres de las bases de datos](#nomenclatura-de-los-nombres-de-las-bases-de-datos)
+	- [Naming conventions para las bases de datos de Ciencia Argentina](#naming-conventions-para-las-bases-de-datos-de-ciencia-argentina)
+- [JSON](#json)
+	- [Formato](#formato])
 
 ## Bases de datos
 
