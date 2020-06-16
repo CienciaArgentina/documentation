@@ -32,11 +32,40 @@ En caso de usarse debe ir lo más general a lo más especifico.
 - No usar caracteres especiales (&,#,ñ, etc) (ejemplo: `/job&offers`). 
 - No usar nombres ambiguos (ejemplo: `/results`,`/responses`).
 
-### Nombre entidad / tag
+### Verbos HTTP
+
+<table>
+  <tr>
+    <td>Método HTTP</td>
+    <td>POST</td>
+    <td>GET</td>
+    <td>PUT/PATCH</td>
+    <td>DELETE</td>
+  </tr>
+  <tr>
+    <td>Operación</td>
+    <td>CREATE</td>
+    <td>READ</td>
+    <td>UPDATE</td>
+    <td>DELETE</td>
+  </tr>
+  <tr>
+    <td>/organizations</td>
+    <td>Crea nueva organización</td>
+    <td>Lista de organizaciones</td>
+    <td>Error</td>
+    <td>Elimina todas las organizaciones</td>
+  </tr>
+  <tr>
+    <td>/organizations/1234</td>
+    <td>Error</td>
+    <td>Muestra la organización 1234</td>
+    <td>Si existe, actualiza la organización; sino, devuelve error.</td>
+    <td>Borra 1234</td>
+  </tr>
+</table>
 
 ### Paginado y Sort
-
-### Verbos HTTP
 
 ### Headers
 
