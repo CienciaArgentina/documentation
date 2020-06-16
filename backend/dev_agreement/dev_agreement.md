@@ -20,13 +20,17 @@ Para poder identificar a qué entorno pertenece cada DB debería quedar estandar
 - El nombre de las columnas en snake_case
 - Los campos de Id numéricos, salvo que sea necesario que deberían ser del tipo `BIGINT`
 
-## Recurso
+## Dev agreement Api
 
 ### Naming 
 - Recursos en plural con nomenclatura spinal-case (ejemplo: `/user-profile`).
+- No usar verbos para el nombre de los recursos, solo sustantivos.
+- Recursos en inglés. 
 - Debe evitarse pero en casos necesarios el nivel máximo de anidamiento es dos (ejemplo: `/organizations/:id/institutes/:id`). 
 En caso de usarse debe ir lo más general a lo más especifico. 
-
+- No filtrar atributos a través del endpoint (ejemplo: `/user-profile/:id/name`).
+- No usar caracteres especiales (&,#,ñ, etc) (ejemplo: `/job&offers`). 
+- No usar nombres ambiguos (ejemplo: `/results`,`/responses`).
 
 ### Nombre entidad / tag
 
@@ -42,7 +46,16 @@ En caso de usarse debe ir lo más general a lo más especifico.
 
 ### Versionado
 
+### Cache
+
+### Acciones
+
+### Status code
+
+
 Ejemplo /organizations/v2
 
 ### Formato
 El formato que vamos a utilizar en Ciencia Argentina para los JSON es snake_case
+
+## Dev Agreement versionado de código
