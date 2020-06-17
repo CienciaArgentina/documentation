@@ -65,15 +65,24 @@ En caso de usarse debe ir lo más general a lo más especifico.
   </tr>
 </table>
 
-### Paginado y Sort
-
 ### Headers
+
+- Content-Type: Indicar tipo de contenido que se envía (`ejemplo: application/json`).
+- x-request-id: Identificador e2e de request, tipo a usar: uuid. Si no existe generarlo.
+- Authorization: Para autorización de clientes externos
+
+### Segurización
+- Autenticación: Usamos OAuth2
+- Autorización: OpenID Connect (OIC). 
+- Protocolo: HTTPS
 
 ### Errores
 
 ### Operaciones Bulk
 
 ### Versionado
+
+### Paginado y Sort
 
 ### Cache
 
