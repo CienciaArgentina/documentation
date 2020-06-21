@@ -515,33 +515,6 @@ paths:
           description: Not Found
 components:
   schemas:
-    JobType:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        description:
-          type: string
-          nullable: true
-        publishDate:
-          type: string
-          format: date-time
-        dateCreated:
-          type: string
-          format: date-time
-        dateDeleted:
-          type: string
-          format: date-time
-          nullable: true
-      nullable: true
-    ScolarshipEnum:
-      enum:
-        - 1
-        - 2
-        - 3
-      type: integer
-      format: int32
     Tag:
       type: object
       properties:
@@ -560,6 +533,7 @@ components:
           nullable: true
       nullable: true
     CareerStateEnum:
+      description: WARNING indicar aquí qué significan los enum
       enum:
         - 1
         - 2
@@ -588,7 +562,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    Points:
+    Point:
       type: object
       properties:
         latitud:
@@ -600,38 +574,48 @@ components:
       nullable: true
     Geo:
       type: object
+      description: WARNING hace falta un tipo, consensuamos siempre Point
       properties:
         type:
           type: string
+          enum: [Point, OTRO]
           nullable: true
         coordinates:
-          $ref: '#/components/schemas/Points'
+          $ref: '#/components/schemas/Point'
       nullable: true
     Address:
       type: object
       properties:
         streetName:
+          description: Identification for the Street (Name and/or Number)
           type: string
           nullable: true
         streetNumber:
+          description: postal number or identification for the house or building 
           type: string
           nullable: true
         zipCode:
+          description: zip or portal code
           type: string
           nullable: true
         department:
+          description: Name of the Department (a.k.a Partido), sometimes between StateOrProvince and Locality or City
           type: string
           nullable: true
         additionals:
+          description: any additional data required for complete postal address
           type: string
           nullable: true
         country:
+          description: name of the country
           type: string
           nullable: true
         stateOrProvince:
+          description: name of the state or province or main political subdivision before Country level
           type: string
           nullable: true
         city:
+          description: name of the city, sometimes before StateOrProvince
           type: string
           nullable: true
         locality:
@@ -639,31 +623,46 @@ components:
         geo:
           $ref: '#/components/schemas/Geo'
       nullable: true
+    EmailDomain:
+      description: emailDomain
+      type: string
+      pattern: ^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w{2,}([-.]\\w+)*$
     Organization:
+      description: Organization offering researching projects
       type: object
       properties:
         name:
+          description: complete name of the organization in its original language
           type: string
           nullable: true
-        initials:
+        acronym:
           type: string
+          pattern: /^([a-zA-Z0-9_-]){0,20}$/
+          description: acronym identifying the organization 
           nullable: true
         organizationType:
           $ref: '#/components/schemas/OrganizationType'
         logo:
+          type: object
+          nullable: true
+        summary:
           type: string
+          pattern: /^([a-zA-Z0-9_-]){0,140}$/
           nullable: true
         description:
           type: string
           nullable: true
-        descriptionLarge:
+        organizationSite:
+          description: webSite of the organization
           type: string
-          nullable: true
-        link:
-          type: string
+          format: url
           nullable: true
         address:
           $ref: '#/components/schemas/Address'
+        emailDomain:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailDomain'
       nullable: true
     Department:
       type: object
@@ -672,14 +671,19 @@ components:
           type: integer
           format: int32
         name:
+          description: complete name of a deparment or laboratory inside an Organization
           type: string
+          pattern: /^([a-zA-Z0-9_-]){0,140}$/
           nullable: true
         description:
           type: string
           nullable: true
-        link:
+        labSite:
           type: string
+          format: url
           nullable: true
+        address:
+          $ref: '#/components/schemas/Address'
       nullable: true
     OrganizationProject:
       type: object
@@ -707,19 +711,26 @@ components:
           type: integer
           format: int32
         title:
+          description: short description or summary for the jobOffering
           type: string
+          pattern: /^([a-zA-Z0-9_-]){0,140}$/
           nullable: true
         description:
+          description: complete description or additional information of the jobOffering
           type: string
+          pattern: /^([a-zA-Z0-9_-]){0,500}$/
           nullable: true
         isOpen:
           type: boolean
         jobType:
-          $ref: '#/components/schemas/JobType'
+          type: string
+          enum: [SCHOLARSHIP, TRAINING, OTHER]
         possibleThesis:
+          description: whether or not this job qualifies to be included as part of formal thesis
           type: boolean
         scolarship:
-          $ref: '#/components/schemas/ScolarshipEnum'
+          type: string
+          enum: [CONICET, UBA, AGENCIA, OTHER]
         salary:
           type: number
           format: double
@@ -732,32 +743,43 @@ components:
             $ref: '#/components/schemas/Tag'
           nullable: true
         contactEmail:
+          description: email address to get in contact with the offerer
           type: string
+          format: email
           nullable: true
         projectManager:
+          description: name of the manager driving the project
           type: string
           nullable: true
         researchTopics:
+          description: WARNING ESTO ES UN ARRAY DE TAGS. tags identifying research topics of the project.
           type: string
           nullable: true
         experimentalModel:
+          description: WARNING si es posible, definir como enum y mandar al schema
           type: string
+          enum: [PREGUNTO:, ES, POSIBLE, TIPIFICAR, CON, UN, ENUM]
           nullable: true
         careerState:
           $ref: '#/components/schemas/CareerStateEnum'
-        dateCareerFinish:
+        endCareerDateEstimated:
+          description: last date this offering requires the academic education will be finished
           type: string
-          format: date-time
+          format: date
         labExperience:
+          description: whether or not it offers lab experience
           type: boolean
           nullable: true
         presentationLetter:
+          description: whether or not it requires a formal presentation letter
           type: boolean
+        requirementsSummary:
+          type: string
+          pattern: /^([a-zA-Z0-9_-]){0,500}$/
+          nullable: true
         requirements:
           type: string
-          nullable: true
-        optionalRequirements:
-          type: string
+          pattern: /^([a-zA-Z0-9_-]){0,500}$/
           nullable: true
         organization:
           $ref: '#/components/schemas/Organization'
@@ -770,23 +792,35 @@ components:
       type: object
       properties:
         identificationType:
+          description: Sigla que identifica al tipo de documento. Acronym for IdentificationType
           type: string
+          enum: [DU, PASSPORT, OTHER]
           nullable: true
         identificationId:
+          description: string generalmente llamado "número" de documento. Generally numeric string 
           type: string
           nullable: true
+        issuingDate:
+          type: string
+          format: date
+        issuingCountry: 
+          type: string
       nullable: true
     SocialNetwork:
       type: object
       properties:
         socialNetworkName:
           type: string
+          enum: [IG, TWITTER, FB, LKDN]
           nullable: true
         userName:
+          description: userName on the Social Network
           type: string
           nullable: true
         url:
           type: string
+          description: profile url for our User
+          format: url
           nullable: true
       nullable: true
     Gender:
@@ -798,6 +832,7 @@ components:
         description:
           type: string
           nullable: true
+          enum: [MASCULINO, FEMENINO, NOT BINARY]
       nullable: true
     Nationality:
       type: object
@@ -809,7 +844,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    WorkExperience:
+    ProfessionalExperience:
       type: object
       properties:
         company:
@@ -821,26 +856,27 @@ components:
         description:
           type: string
           nullable: true
-        addittions:
+        additionalInformation:
           type: string
           nullable: true
-        dateStart:
+        startingDate:
           type: string
-          format: date-time
-        dateEnd:
+          format: date
+        endDate:
           type: string
-          format: date-time
+          format: date
           nullable: true
         address:
           $ref: '#/components/schemas/Address'
       nullable: true
-    UserStudyType:
+    AcademicEducationType:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
-        description:
+        type:
+          description: WARNING poner un enum para entender a qué tipo se refiere
+          type: string
+          enum: [DEGREE, PHD, MASTER, DOCTORADO, POSTDOCTORADO, OTROS]
+        description: 
           type: string
           nullable: true
       nullable: true
@@ -857,25 +893,27 @@ components:
           type: string
           nullable: true
       nullable: true
-    UserStudyStatus:
+    AcademicFormationStatus:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
+        type:
+          type: string
+          enum: [ONGOING, ENDED]
         description:
           type: string
           nullable: true
       nullable: true
-    UserStudy:
+    AcademicFormation:
       type: object
       properties:
-        userStudyType:
-          $ref: '#/components/schemas/UserStudyType'
-        carrer:
+        type:
+          $ref: '#/components/schemas/AcademicEducationType'
+        career:
+          description: name of the title when formation ended
           type: string
           nullable: true
         institution:
+          description: name of the institution when NOT University
           type: string
           nullable: true
         additional:
@@ -883,18 +921,19 @@ components:
           nullable: true
         university:
           $ref: '#/components/schemas/University'
-        userStudyStatus:
-          $ref: '#/components/schemas/UserStudyStatus'
-        dateStart:
+        status:
+          $ref: '#/components/schemas/AcademicFormationStatus'
+        startingDate:
           type: string
           format: date-time
-        dateEnd:
+        endDate:
           type: string
           format: date-time
           nullable: true
       nullable: true
     Telephone:
       type: object
+      description: WARNIN, agregar patterns a cada código
       properties:
         type:
           type: string
@@ -918,14 +957,22 @@ components:
         - nationality
       type: object
       properties:
-        id:
-          type: number
         userId:
           type: number
         name:
+          description: given name, as is stated in Identification
           type: string
+        userName:
+          description: user preferred userName (by default from email address or from name)
+          type: string
+          pattern: "^([a-zA-Z0-9_-]){4,8}$"
         lastName:
+          description: family name, as is stated in Identification
           type: string
+        email:
+          description: primary and unique email address for the user
+          type: string
+          format: email
         identification:
           $ref: '#/components/schemas/Identification'
         socialNetwork:
@@ -942,19 +989,50 @@ components:
           format: date
         nationality:
           $ref: '#/components/schemas/Nationality'
-        workExperience:
+        professionalExperience:
           type: array
           items:
-            $ref: '#/components/schemas/WorkExperience'
+            $ref: '#/components/schemas/ProfessionalExperience'
           nullable: true
-        userStudy:
+        academicFormation:
           type: array
           items:
-            $ref: '#/components/schemas/UserStudy'
+            $ref: '#/components/schemas/AcademicFormation'
           nullable: true
-        telephone:
+        userContactPhoneNUmber:
           type: array
           items:
             $ref: '#/components/schemas/Telephone'
           nullable: true
+        locale:
+          type: string
+          enum:
+            - AR
+            - CL
+            - BR
+            - PY
+            - UY
+            - OTHER
+        timezone:
+          type: string
+          enum:
+            - GMT
+            - UTC
+            - Z
+        picture:
+          description: picture or avatar
+          type: string
+          format: binary
+        publicProfile:
+          description: public profile url if user enabled public profile
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            caaUserProfile: 
+              type: string
+              format: url
+        userBlocked:
+          description: "Usuario bloqueado"
+          type: boolean
       nullable: true
