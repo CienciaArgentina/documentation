@@ -79,6 +79,8 @@ En caso de usarse debe ir lo más general a lo más especifico.
 ### Errores
 
 ## Error response
+
+```json
 {
     "id":"b7c450ed-03e6-4f62-84f8-0cc60045e74f",
     "status": 400,
@@ -94,6 +96,7 @@ En caso de usarse debe ir lo más general a lo más especifico.
         }
     ] 
 }
+```
 
 ### Operaciones Bulk
 
