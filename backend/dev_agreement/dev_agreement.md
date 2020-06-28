@@ -123,21 +123,21 @@ Es obligatorio devolver un formato como el siguiente ejemplo:
 ```json
 
 {
-total: 1100,
-offset: 0,
-limit: 2,
-results: [
-{
-"id": 1,
-"name":"Nico",
-"last_name":"Garcia"
-},
-{
-"id": 2,
-"name":"Matias",
-"last_name":"Gonzales"
-}
-]
+  "total": 1100,
+  "offset": 0,
+  "limit": 2,
+  "results": [
+    {
+      "id": 1,
+      "name": "Nico",
+      "last_name": "Garcia"
+    },
+    {
+      "id": 2,
+      "name": "Matias",
+      "last_name": "Gonzales"
+    }
+  ]
 }
 
 ```
