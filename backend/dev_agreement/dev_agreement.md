@@ -76,6 +76,10 @@ En caso de usarse debe ir lo más general a lo más especifico.
 - Autorización: OpenID Connect (OIC). 
 - Protocolo: HTTPS
 
+### Formato
+
+El formato que vamos a utilizar en Ciencia Argentina para los JSON es snake_case
+
 ### Errores
 
 ## Error response
@@ -114,7 +118,7 @@ limit: cantidad de registros por pagina. Default: 50
 
 ## Response: 
 
-Ejemplo: 
+Es obligatorio devolver un formato como el siguiente ejemplo:
 
 ```json
 
@@ -126,12 +130,12 @@ results: [
 {
 "id": 1,
 "name":"Nico",
-"lastName":"Garcia"
+"last_name":"Garcia"
 },
 {
 "id": 2,
 "name":"Matias",
-"lastName":"Gonzales"
+"last_name":"Gonzales"
 }
 ]
 }
@@ -148,23 +152,23 @@ order: Indica orden. default: asc
 ## Ejemplo Request
 
 ```
-GET /users?sort=name,lastName&order=desc
+GET /users?sort=name,last_name&order=desc
 ```
-
-### Operaciones Bulk
 
 ### Versionado
 
+Ejemplo /organizations/v2
+
 ### Cache
 
-### Acciones
+Como parametro en el header vamos a manejar la directiva (opcional): Cache-Control. Tanto para el request como response. 
 
 ### Status code
 
+https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 
-Ejemplo /organizations/v2
+### Operaciones Bulk
 
-### Formato
-El formato que vamos a utilizar en Ciencia Argentina para los JSON es snake_case
+## Acciones
 
 ## Dev Agreement versionado de código
