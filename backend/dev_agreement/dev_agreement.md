@@ -98,6 +98,15 @@ En caso de usarse debe ir lo más general a lo más especifico.
 }
 ```
 
+- id: Id unico correspondiente al error
+- status: Codigo http
+- message: Descripcion general del error
+- errors: List de errores con atributos detail (descripcion de la situacion que genero el error) y code (identificacion de la situacion que genero el error)
+
+
+
+
+
 ### Operaciones Bulk
 
 ### Versionado
