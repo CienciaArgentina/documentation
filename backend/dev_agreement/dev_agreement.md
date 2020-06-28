@@ -103,15 +103,57 @@ En caso de usarse debe ir lo más general a lo más especifico.
 - message: Descripcion general del error
 - errors: List de errores con atributos detail (descripcion de la situacion que genero el error) y code (identificacion de la situacion que genero el error)
 
+### Paginado y Sort
 
+## Query params: 
 
+```
+offset: identificador de pagina. Default: 0  
+limit: cantidad de registros por pagina. Default: 50
+```
 
+## Response: 
+
+Ejemplo: 
+
+```json
+
+{
+total: 1100,
+offset: 0,
+limit: 2,
+results: [
+{
+"id": 1,
+"name":"Nico",
+"lastName":"Garcia"
+},
+{
+"id": 2,
+"name":"Matias",
+"lastName":"Gonzales"
+}
+]
+}
+
+```
+
+## Sorting
+
+```
+sort: Indica que va a ordernar un resultado. default: id
+order: Indica orden. default: asc
+```
+
+## Ejemplo Request
+
+```
+GET /users?sort=name,lastName&order=desc
+```
 
 ### Operaciones Bulk
 
 ### Versionado
-
-### Paginado y Sort
 
 ### Cache
 
