@@ -624,7 +624,7 @@ components:
           $ref: '#/components/schemas/Geo'
       nullable: true
     EmailDomain:
-      description: emailDomain
+      description: organization domain email
       type: string
       pattern: ^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w{2,}([-.]\\w+)*$
     Organization:
@@ -640,7 +640,7 @@ components:
           pattern: /^([a-zA-Z0-9_-]){0,20}$/
           description: acronym identifying the organization 
           nullable: true
-        organizationType:
+        organization_type:
           $ref: '#/components/schemas/OrganizationType'
         logo:
           type: object
@@ -652,14 +652,14 @@ components:
         description:
           type: string
           nullable: true
-        organizationSite:
-          description: webSite of the organization
+        website:
+          description: organization website
           type: string
           format: url
           nullable: true
         address:
           $ref: '#/components/schemas/Address'
-        emailDomain:
+        email_domains:
           type: array
           items:
             $ref: '#/components/schemas/EmailDomain'
