@@ -8,7 +8,7 @@ paths:
       summary: "Sign up"
       description: "Registro de usuarios (sign-up)"
       tags:
-        - Users
+        - user
       requestBody:
         required: true
         content:
@@ -29,14 +29,14 @@ paths:
       responses:
         '200':
           description: Success
-  /users/{userId}:
+  /users/{user_id}:
     get:
       summary: "Get user by Id"
       description: "Obtiene un usuario por ID"
       tags:
-        - Users
+        - users
       parameters:
-        - name: userId
+        - name: user_id
           in: path
           required: true
           schema:
@@ -48,7 +48,7 @@ paths:
   /users/login:
     post:
       tags:
-        - Users
+        - users
       requestBody:
         required: true
         content:
@@ -66,14 +66,14 @@ paths:
       responses:
         '200':
           description: Success
-  /users/sendconfirmationemail/{userId}:
+  /users/send_confirmation_email/{user_id}:
     get:
       summary: "Send confirmation email"
       description: "Envío de email para la confirmación de un usuario"
       tags:
-        - Users
+        - users
       parameters:
-        - name: userId
+        - name: user_id
           in: path
           required: true
           schema:
@@ -82,11 +82,11 @@ paths:
       responses:
         '200':
           description: Success
-  /users/resendconfirmationemail:
+  /users/resend_confirmation_email:
     get:
       summary: "Resend confirmation email"
       tags:
-        - Users
+        - users
       parameters:
         - name: email
           in: query
@@ -102,7 +102,7 @@ paths:
       summary: "Confirm email"
       description: "Confirmación de email con token"
       tags:
-        - Users
+        - users
       parameters:
         - name: email
           in: query
@@ -119,12 +119,12 @@ paths:
       responses:
         '200':
           description: Success
-  /users/sendpasswordreset:
+  /users/send_password_reset:
     get:
       summary: "Send password reset"
       description: "Envío de mail para confirmar un cambio de password"
       tags:
-        - Users
+        - users
       parameters:
         - name: email
           in: query
@@ -135,12 +135,12 @@ paths:
       responses:
         '200':
           description: Success
-  /users/confirmpasswordreset:
+  /users/confirm_password_reset:
     post:
       summary: "Confirm password reset"
       description: "Confirmación del cambio de contraseña"
       tags:
-        - Users
+        - users
       requestBody:
         required: true
         content:
@@ -164,12 +164,12 @@ paths:
       responses:
         '200':
           description: Success
-  /users/forgotusername:
+  /users/forgot_username:
     get:
       summary: "Forgot username"
       description: "Envía al email, previamente confirmado, el nombre de usuario"
       tags:
-        - Users
+        - users
       parameters:
         - name: email
           in: query
@@ -183,23 +183,23 @@ paths:
   /api/geo/countries:
     get:
       tags:
-        - Geo
+        - geo
       responses:
         '200':
           description: Success
   /api/geo/states:
     get:
       tags:
-        - Geo
+        - geo
       responses:
         '200':
           description: Success
-  /api/geo/states/{stateId}/cities:
+  /api/geo/states/{state_id}/cities:
     get:
       tags:
-        - Geo
+        - geo
       parameters:
-        - name: stateId
+        - name: state_id
           in: path
           required: true
           schema:
@@ -209,12 +209,12 @@ paths:
       responses:
         '200':
           description: Success
-  /api/geo/cities/{cityId}/localities:
+  /api/geo/cities/{city_id}/localities:
     get:
       tags:
-        - Geo
+        - geo
       parameters:
-        - name: cityId
+        - name: city_id
           in: path
           required: true
           schema:
@@ -224,37 +224,34 @@ paths:
       responses:
         '200':
           description: Success
-  /api/joboffers:
+  /api/job_offers:
     get:
       tags:
-        - JobOffers
+        - job_offers
       responses:
         '200':
           description: Success
     post:
       tags:
-        - JobOffers
+        - job_offers
       requestBody:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/JobOffer'
+              $ref: '#/components/schemas/job_offer'
           application/json:
             schema:
-              $ref: '#/components/schemas/JobOffer'
+              $ref: '#/components/schemas/job_offer'
           text/json:
             schema:
-              $ref: '#/components/schemas/JobOffer'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/JobOffer'
+              $ref: '#/components/schemas/job_offer'
       responses:
         '200':
           description: Success
-  '/api/joboffers/{id}':
+  '/api/job_offers/{id}':
     get:
       tags:
-        - JobOffers
+        - job_offers
       parameters:
         - name: id
           in: path
@@ -267,7 +264,7 @@ paths:
           description: Success
     put:
       tags:
-        - JobOffers
+        - job_offers
       parameters:
         - name: id
           in: path
@@ -279,22 +276,19 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/JobOffer'
+              $ref: '#/components/schemas/job_offer'
           application/json:
             schema:
-              $ref: '#/components/schemas/JobOffer'
+              $ref: '#/components/schemas/job_offer'
           text/json:
             schema:
-              $ref: '#/components/schemas/JobOffer'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/JobOffer'
+              $ref: '#/components/schemas/job_offer'
       responses:
         '200':
           description: Success
     delete:
       tags:
-        - JobOffers
+        - job_offers
       parameters:
         - name: id
           in: path
@@ -308,36 +302,33 @@ paths:
   /api/organizations:
     get:
       tags:
-        - Organizations
+        - organizations
       responses:
         '200':
           description: Success
     post:
       tags:
-        - Organizations
+        - organizations
       requestBody:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/organization'
           application/json:
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/organization'
           text/json:
             schema:
-              $ref: '#/components/schemas/Organization'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/organization'
       responses:
         '200':
           description: Success
-  '/api/organizations/{organizationId}':
+  '/api/organizations/{organization_id}':
     get:
       tags:
-        - Organizations
+        - organizations
       parameters:
-        - name: organizationId
+        - name: organization_id
           in: path
           required: true
           schema:
@@ -348,9 +339,9 @@ paths:
           description: Success
     put:
       tags:
-        - Organizations
+        - organizations
       parameters:
-        - name: organizationId
+        - name: organization_id
           in: path
           required: true
           schema:
@@ -360,24 +351,21 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/organization'
           application/json:
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/organization'
           text/json:
             schema:
-              $ref: '#/components/schemas/Organization'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/organization'
       responses:
         '200':
           description: Success
     delete:
       tags:
-        - Organizations
+        - organizations
       parameters:
-        - name: organizationId
+        - name: organization_id
           in: path
           required: true
           schema:
@@ -386,12 +374,12 @@ paths:
       responses:
         '200':
           description: Success
-  '/api/organizations/{labId}':
+  '/api/organizations/{lab_id}':
     get:
       tags:
-        - Organizations
+        - organizations
       parameters:
-        - name: labId
+        - name: lab_id
           in: path
           required: true
           schema:
@@ -400,12 +388,12 @@ paths:
       responses:
         '200':
           description: Success
-  /api/userProfiles/{userProfileId}:
+  /api/userProfiles/{user_profile_id}:
     get:
       tags:
-        - UserProfiles
+        - user_profile
       parameters:
-        - name: userProfileId
+        - name: user_profile_id
           in: path
           required: true
           schema:
@@ -417,20 +405,20 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/user_profile'
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/user_profile'
             text/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/user_profile'
         '404':
           description: Not Found
     post:
       tags:
-        - UserProfiles
+        - user_profile
       parameters:
-        - name: userProfileId
+        - name: user_profile_id
           in: path
           required: true
           schema:
@@ -440,36 +428,33 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/UserProfile'
+              $ref: '#/components/schemas/user_profile'
           application/json:
             schema:
-              $ref: '#/components/schemas/UserProfile'
+              $ref: '#/components/schemas/user_profile'
           text/json:
             schema:
-              $ref: '#/components/schemas/UserProfile'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UserProfile'
+              $ref: '#/components/schemas/user_profile'
       responses:
         '200':
           description: Success
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/user_profile'
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/user_profile'
             text/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/user_profile'
         '404':
           description: Not Found
     put:
       tags:
-        - UserProfiles
+        - user_profile
       parameters:
-        - name: userProfileId
+        - name: user_profile_id
           in: path
           required: true
           schema:
@@ -479,16 +464,13 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/UserProfile'
+              $ref: '#/components/schemas/user_profile'
           application/json:
             schema:
-              $ref: '#/components/schemas/UserProfile'
+              $ref: '#/components/schemas/user_profile'
           text/json:
             schema:
-              $ref: '#/components/schemas/UserProfile'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UserProfile'
+              $ref: '#/components/schemas/user_profile'
       responses:
         '200':
           description: Success
@@ -498,9 +480,9 @@ paths:
           description: Not Found
     delete:
       tags:
-        - UserProfiles
+        - user_profile
       parameters:
-        - name: userProfileId
+        - name: user_profile_id
           in: path
           required: true
           schema:
@@ -532,7 +514,7 @@ components:
           format: date-time
           nullable: true
       nullable: true
-    CareerStateEnum:
+    career_status_enum:
       description: WARNING indicar aquí qué significan los enum
       enum:
         - 1
@@ -542,17 +524,17 @@ components:
         - 5
       type: integer
       format: int32
-    OrganizationType:
+    organization_type:
       type: object
       properties:
         description:
           type: string
           nullable: true
-        payPlatform:
+        pay_platform:
           type: number
           format: double
       nullable: true
-    Locality:
+    locality:
       type: object
       properties:
         id:
@@ -562,7 +544,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    Point:
+    point:
       type: object
       properties:
         latitud:
@@ -572,34 +554,34 @@ components:
           type: string
           nullable: true
       nullable: true
-    Geo:
+    geo:
       type: object
-      description: WARNING hace falta un tipo, consensuamos siempre Point
+      description: WARNING hace falta un tipo, consensuamos siempre point
       properties:
         type:
           type: string
-          enum: [Point, OTRO]
+          enum: [point, OTRO]
           nullable: true
         coordinates:
-          $ref: '#/components/schemas/Point'
+          $ref: '#/components/schemas/point'
       nullable: true
-    Address:
+    address:
       type: object
       properties:
-        streetName:
-          description: Identification for the Street (Name and/or Number)
+        street_name:
+          description: identification for the Street (Name and/or Number)
           type: string
           nullable: true
-        streetNumber:
+        street_number:
           description: postal number or identification for the house or building 
           type: string
           nullable: true
-        zipCode:
+        zip_code:
           description: zip or portal code
           type: string
           nullable: true
         department:
-          description: Name of the Department (a.k.a Partido), sometimes between StateOrProvince and Locality or City
+          description: Name of the department (a.k.a Partido), sometimes between StateOrProvince and locality or City
           type: string
           nullable: true
         additionals:
@@ -610,7 +592,7 @@ components:
           description: name of the country
           type: string
           nullable: true
-        stateOrProvince:
+        state_or_province:
           description: name of the state or province or main political subdivision before Country level
           type: string
           nullable: true
@@ -619,16 +601,16 @@ components:
           type: string
           nullable: true
         locality:
-          $ref: '#/components/schemas/Locality'
+          $ref: '#/components/schemas/locality'
         geo:
-          $ref: '#/components/schemas/Geo'
+          $ref: '#/components/schemas/geo'
       nullable: true
-    EmailDomain:
+    email_domain:
       description: organization domain email
       type: string
       pattern: ^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w{2,}([-.]\\w+)*$
-    Organization:
-      description: Organization offering researching projects
+    organization:
+      description: organization offering researching projects
       type: object
       properties:
         name:
@@ -641,7 +623,7 @@ components:
           description: acronym identifying the organization 
           nullable: true
         organization_type:
-          $ref: '#/components/schemas/OrganizationType'
+          $ref: '#/components/schemas/organization_type'
         logo:
           type: object
           nullable: true
@@ -658,34 +640,34 @@ components:
           format: url
           nullable: true
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/address'
         email_domains:
           type: array
           items:
-            $ref: '#/components/schemas/EmailDomain'
+            $ref: '#/components/schemas/email_domain'
       nullable: true
-    Department:
+    department:
       type: object
       properties:
         id:
           type: integer
           format: int32
         name:
-          description: complete name of a deparment or laboratory inside an Organization
+          description: complete name of a deparment or laboratory inside an organization
           type: string
           pattern: /^([a-zA-Z0-9_-]){0,140}$/
           nullable: true
         description:
           type: string
           nullable: true
-        labSite:
+        lab_site:
           type: string
           format: url
           nullable: true
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/address'
       nullable: true
-    OrganizationProject:
+    organization_project:
       type: object
       properties:
         id:
@@ -697,14 +679,14 @@ components:
         about:
           type: string
           nullable: true
-        experimentalModel:
+        experimental_model:
           type: string
           nullable: true
-        responsable:
+        responsible:
           type: string
           nullable: true
       nullable: true
-    JobOffer:
+    job_offer:
       type: object
       properties:
         id:
@@ -720,12 +702,12 @@ components:
           type: string
           pattern: /^([a-zA-Z0-9_-]){0,500}$/
           nullable: true
-        isOpen:
+        is_open:
           type: boolean
-        jobType:
+        job_type:
           type: string
           enum: [SCHOLARSHIP, TRAINING, OTHER]
-        possibleThesis:
+        possible_thesis:
           description: whether or not this job qualifies to be included as part of formal thesis
           type: boolean
         scolarship:
@@ -742,38 +724,38 @@ components:
           items:
             $ref: '#/components/schemas/Tag'
           nullable: true
-        contactEmail:
+        contact_email:
           description: email address to get in contact with the offerer
           type: string
           format: email
           nullable: true
-        projectManager:
+        project_manager:
           description: name of the manager driving the project
           type: string
           nullable: true
-        researchTopics:
+        research_topics:
           description: WARNING ESTO ES UN ARRAY DE TAGS. tags identifying research topics of the project.
           type: string
           nullable: true
-        experimentalModel:
+        experimental_model:
           description: WARNING si es posible, definir como enum y mandar al schema
           type: string
           enum: [PREGUNTO:, ES, POSIBLE, TIPIFICAR, CON, UN, ENUM]
           nullable: true
-        careerState:
-          $ref: '#/components/schemas/CareerStateEnum'
-        endCareerDateEstimated:
+        career_status:
+          $ref: '#/components/schemas/career_status_enum'
+        end_career_estimated_date:
           description: last date this offering requires the academic education will be finished
           type: string
           format: date
-        labExperience:
+        lab_experience:
           description: whether or not it offers lab experience
           type: boolean
           nullable: true
-        presentationLetter:
+        cover_letter:
           description: whether or not it requires a formal presentation letter
           type: boolean
-        requirementsSummary:
+        requirements_summary:
           type: string
           pattern: /^([a-zA-Z0-9_-]){0,500}$/
           nullable: true
@@ -782,13 +764,13 @@ components:
           pattern: /^([a-zA-Z0-9_-]){0,500}$/
           nullable: true
         organization:
-          $ref: '#/components/schemas/Organization'
+          $ref: '#/components/schemas/organization'
         department:
-          $ref: '#/components/schemas/Department'
+          $ref: '#/components/schemas/department'
         project:
-          $ref: '#/components/schemas/OrganizationProject'
+          $ref: '#/components/schemas/organization_project'
       nullable: true
-    Identification:
+    identification:
       type: object
       properties:
         identificationType:
@@ -796,25 +778,25 @@ components:
           type: string
           enum: [DU, PASSPORT, OTHER]
           nullable: true
-        identificationId:
+        identification_id:
           description: string generalmente llamado "número" de documento. Generally numeric string 
           type: string
           nullable: true
-        issuingDate:
+        issuing_date:
           type: string
           format: date
-        issuingCountry: 
+        issuing_country: 
           type: string
       nullable: true
-    SocialNetwork:
+    social_network:
       type: object
       properties:
-        socialNetworkName:
+        social_network_name:
           type: string
           enum: [IG, TWITTER, FB, LKDN]
           nullable: true
-        userName:
-          description: userName on the Social Network
+        username:
+          description: username on the Social Network
           type: string
           nullable: true
         url:
@@ -823,7 +805,7 @@ components:
           format: url
           nullable: true
       nullable: true
-    Gender:
+    gender:
       type: object
       properties:
         id:
@@ -834,7 +816,7 @@ components:
           nullable: true
           enum: [MASCULINO, FEMENINO, NOT BINARY]
       nullable: true
-    Nationality:
+    nationality:
       type: object
       properties:
         id:
@@ -844,7 +826,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    ProfessionalExperience:
+    professional_experience:
       type: object
       properties:
         company:
@@ -856,20 +838,20 @@ components:
         description:
           type: string
           nullable: true
-        additionalInformation:
+        additional_information:
           type: string
           nullable: true
-        startingDate:
+        starting_date:
           type: string
           format: date
-        endDate:
+        end_date:
           type: string
           format: date
           nullable: true
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/address'
       nullable: true
-    AcademicEducationType:
+    academic_education_type:
       type: object
       properties:
         type:
@@ -880,7 +862,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    University:
+    university:
       type: object
       properties:
         id:
@@ -893,7 +875,7 @@ components:
           type: string
           nullable: true
       nullable: true
-    AcademicFormationStatus:
+    academic_formation_status:
       type: object
       properties:
         type:
@@ -903,106 +885,106 @@ components:
           type: string
           nullable: true
       nullable: true
-    AcademicFormation:
+    academic_formation:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/AcademicEducationType'
+          $ref: '#/components/schemas/academic_education_type'
         career:
           description: name of the title when formation ended
           type: string
           nullable: true
         institution:
-          description: name of the institution when NOT University
+          description: name of the institution when NOT university
           type: string
           nullable: true
         additional:
           type: string
           nullable: true
         university:
-          $ref: '#/components/schemas/University'
+          $ref: '#/components/schemas/university'
         status:
-          $ref: '#/components/schemas/AcademicFormationStatus'
-        startingDate:
+          $ref: '#/components/schemas/academic_formation_status'
+        starting_date:
           type: string
           format: date-time
-        endDate:
+        end_date:
           type: string
           format: date-time
           nullable: true
       nullable: true
-    Telephone:
+    telephone:
       type: object
-      description: WARNIN, agregar patterns a cada código
+      description: WARNING, agregar patterns a cada código
       properties:
         type:
           type: string
           nullable: true
-        countryCode:
+        telephone_country_code:
           type: integer
           format: int32
-        areaCode:
+        telephone_area_code:
           type: integer
           format: int32
-        phoneNumber:
+        telephone_number:
           type: integer
           format: int32
       nullable: true
-    UserProfile:
+    user_profile:
       required:
         - birthday
         - gender
-        - lastName
+        - lastname
         - name
         - nationality
       type: object
       properties:
-        userId:
+        user_id:
           type: number
         name:
-          description: given name, as is stated in Identification
+          description: given name, as is stated in identification
           type: string
-        userName:
-          description: user preferred userName (by default from email address or from name)
+        username:
+          description: user preferred username (by default from email address or from name)
           type: string
           pattern: "^([a-zA-Z0-9_-]){4,8}$"
-        lastName:
-          description: family name, as is stated in Identification
+        lastname:
+          description: family name, as is stated in identification
           type: string
         email:
           description: primary and unique email address for the user
           type: string
           format: email
         identification:
-          $ref: '#/components/schemas/Identification'
-        socialNetwork:
+          $ref: '#/components/schemas/identification'
+        social_network:
           type: array
           items:
-            $ref: '#/components/schemas/SocialNetwork'
+            $ref: '#/components/schemas/social_network'
           nullable: true
         gender:
-          $ref: '#/components/schemas/Gender'
+          $ref: '#/components/schemas/gender'
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/address'
         birthday:
           type: string
           format: date
         nationality:
-          $ref: '#/components/schemas/Nationality'
-        professionalExperience:
+          $ref: '#/components/schemas/nationality'
+        professional_experience:
           type: array
           items:
-            $ref: '#/components/schemas/ProfessionalExperience'
+            $ref: '#/components/schemas/professional_experience'
           nullable: true
-        academicFormation:
+        academic_formation:
           type: array
           items:
-            $ref: '#/components/schemas/AcademicFormation'
+            $ref: '#/components/schemas/academic_formation'
           nullable: true
-        userContactPhoneNUmber:
+        user_contact_phone_number:
           type: array
           items:
-            $ref: '#/components/schemas/Telephone'
+            $ref: '#/components/schemas/telephone'
           nullable: true
         locale:
           type: string
@@ -1023,16 +1005,16 @@ components:
           description: picture or avatar
           type: string
           format: binary
-        publicProfile:
+        public_profile:
           description: public profile url if user enabled public profile
           type: object
           properties:
             enabled:
               type: boolean
-            caaUserProfile: 
+            ciencia_argentina_user_profile: 
               type: string
               format: url
-        userBlocked:
+        user_blocked:
           description: "Usuario bloqueado"
           type: boolean
       nullable: true
