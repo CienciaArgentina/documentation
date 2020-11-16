@@ -514,6 +514,20 @@ components:
           format: date-time
           nullable: true
       nullable: true
+    language_skill:
+            description: "Dominio del idioma"
+            type: object
+            properties:
+               language:
+                  type: string
+                  nullable: true
+                  enum: [English, Spanish, Portuguese, Mandarin, Deutsche]
+               skill:
+                 type: string
+                 enum: 
+                   - Native
+                   - Second language
+                   - Basic Knowledge
     career_status_enum:
       description: WARNING indicar aquí qué significan los enum
       enum:
@@ -740,7 +754,7 @@ components:
         experimental_model:
           description: WARNING si es posible, definir como enum y mandar al schema
           type: string
-          enum: [PREGUNTO:, ES, POSIBLE, TIPIFICAR, CON, UN, ENUM]
+          enum: [MODEL1, MODEL2, MODEL3]
           nullable: true
         career_status:
           $ref: '#/components/schemas/career_status_enum'
@@ -1017,4 +1031,10 @@ components:
         user_blocked:
           description: "Usuario bloqueado"
           type: boolean
-      nullable: true
+        user_languages:
+            description: "Idiomas que conoce el usuario"
+            type: array
+            items:
+              $ref: '#/components/schemas/language_skill'
+            nullable: true
+        
