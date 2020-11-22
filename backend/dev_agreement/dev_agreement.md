@@ -23,12 +23,12 @@ Para poder identificar a qué entorno pertenece cada DB debería quedar estandar
 ## Dev agreement Api
 
 ### Naming 
-- Recursos en plural con nomenclatura spinal-case (ejemplo: `/user-profile`).
+- Recursos en plural con nomenclatura spinal-case (ejemplo: `/user-profiles`).
 - No usar verbos para el nombre de los recursos, solo sustantivos.
 - Recursos en inglés. 
 - Debe evitarse pero en casos necesarios el nivel máximo de anidamiento es dos (ejemplo: `/organizations/:id/institutes/:id`). 
 En caso de usarse debe ir lo más general a lo más especifico. 
-- No filtrar atributos a través del endpoint (ejemplo: `/user-profile/:id/name`).
+- No filtrar atributos a través del endpoint (ejemplo: `/user-profiles/:id/name`).
 - No usar caracteres especiales (&,#,ñ, etc) (ejemplo: `/job&offers`). 
 - No usar nombres ambiguos (ejemplo: `/results`,`/responses`).
 
