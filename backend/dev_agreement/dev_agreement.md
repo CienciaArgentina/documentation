@@ -23,7 +23,7 @@ Para poder identificar a qué entorno pertenece cada DB debería quedar estandar
 ## Dev agreement Api
 
 ### Naming 
-- Recursos en plural con nomenclatura spinal-case (ejemplo: `/user-profiles`).
+- Recursos en plural con nomenclatura snake_case (ejemplo: `/user_profiles`).
 - No usar verbos para el nombre de los recursos, solo sustantivos.
 - Recursos en inglés. 
 - Debe evitarse pero en casos necesarios el nivel máximo de anidamiento es dos (ejemplo: `/organizations/:id/institutes/:id`). 
