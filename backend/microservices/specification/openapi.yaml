@@ -8,7 +8,7 @@ paths:
       summary: "Sign up"
       description: "Registro de usuarios (sign-up)"
       tags:
-        - user
+        - users
       requestBody:
         required: true
         content:
@@ -180,21 +180,21 @@ paths:
       responses:
         '200':
           description: Success
-  /api/geo/countries:
+  /geo/countries:
     get:
       tags:
         - geo
       responses:
         '200':
           description: Success
-  /api/geo/states:
+  /geo/states:
     get:
       tags:
         - geo
       responses:
         '200':
           description: Success
-  /api/geo/states/{state_id}/cities:
+  /geo/states/{state_id}/cities:
     get:
       tags:
         - geo
@@ -209,7 +209,7 @@ paths:
       responses:
         '200':
           description: Success
-  /api/geo/cities/{city_id}/localities:
+  /geo/cities/{city_id}/localities:
     get:
       tags:
         - geo
@@ -224,7 +224,7 @@ paths:
       responses:
         '200':
           description: Success
-  /api/job_offers:
+  /job_offers:
     get:
       tags:
         - job_offers
@@ -248,7 +248,7 @@ paths:
       responses:
         '200':
           description: Success
-  '/api/job_offers/{id}':
+  '/job_offers/{id}':
     get:
       tags:
         - job_offers
@@ -299,7 +299,7 @@ paths:
       responses:
         '200':
           description: Success
-  /api/organizations:
+  /organizations:
     get:
       tags:
         - organizations
@@ -323,7 +323,7 @@ paths:
       responses:
         '200':
           description: Success
-  '/api/organizations/{organization_id}':
+  '/organizations/{organization_id}':
     get:
       tags:
         - organizations
@@ -374,7 +374,7 @@ paths:
       responses:
         '200':
           description: Success
-  '/api/organizations/{lab_id}':
+  '/organizations/{lab_id}':
     get:
       tags:
         - organizations
@@ -388,10 +388,10 @@ paths:
       responses:
         '200':
           description: Success
-  /api/userProfiles/{user_profile_id}:
+  /user_profiles/{user_profile_id}:
     get:
       tags:
-        - user_profile
+        - user_profiles
       parameters:
         - name: user_profile_id
           in: path
@@ -416,7 +416,7 @@ paths:
           description: Not Found
     post:
       tags:
-        - user_profile
+        - user_profiles
       parameters:
         - name: user_profile_id
           in: path
@@ -452,7 +452,7 @@ paths:
           description: Not Found
     put:
       tags:
-        - user_profile
+        - user_profiles
       parameters:
         - name: user_profile_id
           in: path
@@ -480,7 +480,7 @@ paths:
           description: Not Found
     delete:
       tags:
-        - user_profile
+        - user_profiles
       parameters:
         - name: user_profile_id
           in: path
