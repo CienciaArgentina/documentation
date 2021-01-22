@@ -974,21 +974,6 @@ components:
           items:
             $ref: '#/components/schemas/telephone'
           nullable: true
-        locale:
-          type: string
-          enum:
-            - AR
-            - CL
-            - BR
-            - PY
-            - UY
-            - OTHER
-        timezone:
-          type: string
-          enum:
-            - GMT
-            - UTC
-            - Z
         picture:
           description: picture or avatar
           type: string
@@ -1002,7 +987,3 @@ components:
             ciencia_argentina_user_profile: 
               type: string
               format: url
-        user_blocked:
-          description: "Usuario bloqueado"
-          type: boolean
-      nullable: true
