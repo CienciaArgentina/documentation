@@ -969,7 +969,7 @@ components:
           items:
             $ref: '#/components/schemas/education'
           nullable: true
-        user_contact_phone_number:
+        telephone:
           type: array
           items:
             $ref: '#/components/schemas/telephone'
