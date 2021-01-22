@@ -390,6 +390,7 @@ paths:
           description: Success
   /user_profiles/{user_profile_id}:
     get:
+      summary: Obtener user profile según ID determinado
       tags:
         - user_profiles
       parameters:
@@ -415,6 +416,7 @@ paths:
         '404':
           description: Not Found
     post:
+      summary: Insertar nuevo user profile
       tags:
         - user_profiles
       parameters:
@@ -451,6 +453,7 @@ paths:
         '404':
           description: Not Found
     put:
+      summary: Actualizar user profile
       tags:
         - user_profiles
       parameters:
@@ -479,6 +482,7 @@ paths:
         '404':
           description: Not Found
     delete:
+      summary: Borrar user profile según ID determinado
       tags:
         - user_profiles
       parameters:
@@ -566,6 +570,7 @@ components:
           $ref: '#/components/schemas/point'
       nullable: true
     address:
+      description: Esto se modifica mediante API call
       type: object
       properties:
         street_name:
@@ -811,10 +816,10 @@ components:
           type: string
           nullable: true
       nullable: true
-    professional_experience:
+    job_experience:
       type: object
       properties:
-        company:
+        institution_name:
           type: string
           nullable: true
         position:
@@ -823,20 +828,20 @@ components:
         description:
           type: string
           nullable: true
-        additional_information:
+        additions:
           type: string
           nullable: true
-        starting_date:
+        date_start:
           type: string
           format: date
-        end_date:
+        date_end:
           type: string
           format: date
           nullable: true
         address:
           $ref: '#/components/schemas/address'
       nullable: true
-    academic_education_type:
+    education_type:
       type: object
       properties:
         type:
@@ -870,11 +875,11 @@ components:
           type: string
           nullable: true
       nullable: true
-    academic_formation:
+    education:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/academic_education_type'
+          $ref: '#/components/schemas/education_type'
         career:
           description: name of the title when formation ended
           type: string
@@ -890,12 +895,12 @@ components:
           $ref: '#/components/schemas/university'
         status:
           $ref: '#/components/schemas/academic_formation_status'
-        starting_date:
+        date_start:
           type: string
-          format: date-time
-        end_date:
+          format: date
+        date_end:
           type: string
-          format: date-time
+          format: date
           nullable: true
       nullable: true
     telephone:
@@ -954,15 +959,15 @@ components:
           format: date
         nationality:
           $ref: '#/components/schemas/nationality'
-        professional_experience:
+        job_experience:
           type: array
           items:
-            $ref: '#/components/schemas/professional_experience'
+            $ref: '#/components/schemas/job_experience'
           nullable: true
-        academic_formation:
+        education:
           type: array
           items:
-            $ref: '#/components/schemas/academic_formation'
+            $ref: '#/components/schemas/education'
           nullable: true
         user_contact_phone_number:
           type: array
