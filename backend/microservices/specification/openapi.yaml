@@ -770,24 +770,6 @@ components:
         project:
           $ref: '#/components/schemas/organization_project'
       nullable: true
-    identification:
-      type: object
-      properties:
-        identificationType:
-          description: Sigla que identifica al tipo de documento. Acronym for IdentificationType
-          type: string
-          enum: [DU, PASSPORT, OTHER]
-          nullable: true
-        identification_id:
-          description: string generalmente llamado "número" de documento. Generally numeric string 
-          type: string
-          nullable: true
-        issuing_date:
-          type: string
-          format: date
-        issuing_country: 
-          type: string
-      nullable: true
     social_network:
       type: object
       properties:
@@ -805,7 +787,7 @@ components:
           format: url
           nullable: true
       nullable: true
-    gender:
+    sex:
       type: object
       properties:
         id:
@@ -936,7 +918,7 @@ components:
     user_profile:
       required:
         - birthdate
-        - gender
+        - sex
         - lastname
         - name
         - nationality
@@ -958,15 +940,13 @@ components:
           description: primary and unique email address for the user
           type: string
           format: email
-        identification:
-          $ref: '#/components/schemas/identification'
         social_network:
           type: array
           items:
             $ref: '#/components/schemas/social_network'
           nullable: true
-        gender:
-          $ref: '#/components/schemas/gender'
+        sex:
+          $ref: '#/components/schemas/sex'
         address:
           $ref: '#/components/schemas/address'
         birthdate:
